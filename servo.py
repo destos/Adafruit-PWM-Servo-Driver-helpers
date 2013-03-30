@@ -27,8 +27,27 @@ class BaseServo(object):
         self.pwm.setPWM(self.channel, 0, pulse/self.tick)
 
 
+class ContinuousConst(BaseServo):
+
+    scale = 5
+
+    def set(self, point):
+        # never above 1 or below -1
+        point = max(min(point, 1.0), -1.0)
+        adjust = 0
+        if point != 0:
+            adjust = (point * self.range) / self.scale # scale down for more accurate control
+        newPulse = math.floor(self.mid+adjust)
+        if self.debug:
+            print 'set_pulse %s, adjust: %s' % (newPulse, adjust)
+        self.set_pulse(newPulse)
+
+
 class Continuous(BaseServo):
     """Continuous Servo"""
+
+    scale = 550
+
     def __init__(self, *args, **kwargs):
         self.default_dir = kwargs.pop('default_dir', True)
         self.dir = self.default_dir
@@ -41,7 +60,7 @@ class Continuous(BaseServo):
         speed = max(min(speed, 100), 0)
         mod = 0
         if speed != 0:
-            adjust = (speed * self.range) / 550 # scale down for more accurate control
+            adjust = (speed * self.range) / self.scale # scale down for more accurate control
             mod = -(adjust) if self.dir else adjust
         newPulse = self.mid+mod
         if self.debug:
