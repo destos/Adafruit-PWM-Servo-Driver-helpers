@@ -37,7 +37,7 @@ class ContinuousConst(BaseServo):
         adjust = 0
         if point != 0:
             adjust = (point * self.range) / self.scale # scale down for more accurate control
-        newPulse = math.floor(self.mid+adjust)
+        newPulse = int(self.mid+adjust)
         if self.debug:
             print 'set_pulse %s, adjust: %s' % (newPulse, adjust)
         self.set_pulse(newPulse)
