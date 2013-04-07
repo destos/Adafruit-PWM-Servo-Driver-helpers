@@ -1,5 +1,5 @@
-# from adafruit.pwm import PWM
 import math
+
 
 class BaseServo(object):
     """BaseServo functions"""
@@ -27,8 +27,8 @@ class BaseServo(object):
         self.pwm.setPWM(self.channel, 0, pulse/self.tick)
 
 
-class ContinuousConst(BaseServo):
-
+class ContinuousServo(BaseServo):
+    """Continuous Servo"""
     scale = 5
 
     def set(self, point):
@@ -43,58 +43,13 @@ class ContinuousConst(BaseServo):
         self.set_pulse(newPulse)
 
 
-class Continuous(BaseServo):
-    """Continuous Servo"""
-
-    scale = 550
-
-    def __init__(self, *args, **kwargs):
-        self.default_dir = kwargs.pop('default_dir', True)
-        self.dir = self.default_dir
-        super(Continuous, self).__init__(*args, **kwargs)
-
-    def set_speed(self, speed=0):
-        """set continuous speed, 0-100"""
-        self.curSpeed = speed
-        # never above 100 or below 0
-        speed = max(min(speed, 100), 0)
-        mod = 0
-        if speed != 0:
-            adjust = (speed * self.range) / self.scale # scale down for more accurate control
-            mod = -(adjust) if self.dir else adjust
-        newPulse = self.mid+mod
-        if self.debug:
-            print 'set_pulse %s, mod: %s' % (newPulse, mod)
-        self.set_pulse(newPulse)
-
-    def forward(self):
-        """docstring for forward"""
-        if self.debug:
-            print 'going forward'
-        self.dir = not self.default_dir
-        self.setSpeed(self.curSpeed)
-
-    def backwards(self):
-        if self.debug:
-            print 'going backwards'
-        """docstring for backwards"""
-        self.dir = self.default_dir
-        self.setSpeed(self.curSpeed)
-
-    def toggle_direction(self):
-        if self.debug:
-            print 'toggling direction'
-        self.dir = not self.dir
-        self.setSpeed(self.curSpeed)
-
-
 class Servo(BaseServo):
-    """Servo Handle"""
+    """Servo Handler"""
     def __init__(self, *args, **kwargs):
         super(Servo, self).__init__(*args, **kwargs)
         self.total_deg = 180
 
-    # functions to set angle and stuff.
+    # functions to set angle and stuff
     def radians(self, deg, minutes=0, sec=0):
         return math.radians(deg + minutes / 60.0 + sec / 3600.0)
 
@@ -107,7 +62,7 @@ class Servo(BaseServo):
         self.set_pulse(self._get_pulse_for_deg(deg))
 
 
-# Configurations
+# Specific Configurations
 class Futaba3003(Servo):
     def __init__(self, *args, **kwargs):
         super(Futaba3003, self).__init__(*args, **kwargs)

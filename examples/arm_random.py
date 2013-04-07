@@ -1,5 +1,5 @@
 from adafruit import PWM
-from servo import Futaba3003
+from hardware import Futaba3003
 from time import sleep
 import random
 
@@ -20,7 +20,6 @@ shoulder = Futaba3003(pwm, 5)
 #         servo.move_to_deg(angle)
 #         sleep(0.3)
 #     moveit()
-# 
 # moveit()
 
 def get_angle(prev):

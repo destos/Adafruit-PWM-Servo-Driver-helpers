@@ -1,0 +1,6 @@
+#ipdb
+#ipdbplugin
+#ipython
+#gevent requires libevent
+gevent
+gevent-socketio

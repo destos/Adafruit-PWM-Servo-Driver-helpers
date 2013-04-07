@@ -1,6 +1,5 @@
-    
 from adafruit import PWM
-from servo import Continuous, Servo, Futaba3003
+from hardware import Continuous, Servo, Futaba3003
 from time import sleep
 import random
 from math import sin, pi
