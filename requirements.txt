@@ -2,5 +2,6 @@
 #ipdbplugin
 #ipython
 #gevent requires libevent
+# on linux systems install libevent-dev
 gevent
 gevent-socketio

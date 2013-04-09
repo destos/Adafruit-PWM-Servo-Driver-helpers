@@ -8,7 +8,7 @@ class BaseServo(object):
             self.debug = pwm.debug
         except:
             self.debug = False
-        
+
         self.pwm = pwm
         self.channel = channel
 
