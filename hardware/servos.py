@@ -30,10 +30,17 @@ class BaseServo(object):
 class ContinuousServo(BaseServo):
     """Continuous Servo"""
     scale = 5
+    power = 0
+    flipped = 1
+    def __init__(self, *args, **kwargs):
+        super(ContinuousServo, self).__init__(*args, **kwargs)
+        if kwargs.pop('flipped', False):
+            self.flipped = -1
 
     def set(self, point):
         # never above 1 or below -1
-        point = max(min(point, 1.0), -1.0)
+        point = max(min(point, 1.0), -1.0) * self.flipped
+        self.power = point
         adjust = 0
         if point != 0:
             adjust = (point * self.range) / self.scale # scale down for more accurate control
