@@ -33,9 +33,9 @@ class ContinuousServo(BaseServo):
     power = 0
     flipped = 1
     def __init__(self, *args, **kwargs):
-        super(ContinuousServo, self).__init__(*args, **kwargs)
         if kwargs.pop('flipped', False):
             self.flipped = -1
+        super(ContinuousServo, self).__init__(*args, **kwargs)
 
     def set(self, point):
         # never above 1 or below -1
