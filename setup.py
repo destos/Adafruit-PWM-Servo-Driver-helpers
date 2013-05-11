@@ -20,12 +20,12 @@ from setuptools import setup
 
 setup(
     name='adafruit-servos',
-    version='0.0.1',
+    version='0.0.2',
     author='Patrick Forringer',
     author_email='patrick@forringer.com',
     description='adafruid PWM controller servo helpers',
     license='Apache License 2.0',
     url='https://github.com/destos/Adafruit-PWM-Servo-Driver-helpers/',
-    packages=['adafruit'],
+    packages=['adafruit', 'adafruit.hardware'],
     long_description='',
 )
