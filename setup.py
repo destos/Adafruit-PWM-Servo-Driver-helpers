@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 #
-# Copyright 2013 Consumers Unified LLC
+# Copyright 2013 Somebody
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -26,6 +26,6 @@ setup(
     description='adafruid PWM controller servo helpers',
     license='Apache License 2.0',
     url='https://github.com/destos/Adafruit-PWM-Servo-Driver-helpers/',
-    packages=['adafruit-servos'],
+    packages=['adafruit'],
     long_description='',
 )
