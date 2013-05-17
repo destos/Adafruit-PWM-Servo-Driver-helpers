@@ -26,6 +26,6 @@ setup(
     description='adafruid PWM controller servo helpers',
     license='Apache License 2.0',
     url='https://github.com/destos/Adafruit-PWM-Servo-Driver-helpers/',
-    packages=['adafruit', 'adafruit.hardware'],
+    packages=['adafruit', 'adafruit.hardware', 'adafruit.hardware.sensors'],
     long_description='',
 )
