@@ -6,7 +6,7 @@ from adafruit.i2c import Adafruit_I2C
 class VCNL4000(object):
     i2c = None
 
-    __ADDRESS 0x13
+    __ADDRESS           = 0x13
 
     # commands and constants
     __COMMAND           = 0x80
@@ -18,10 +18,10 @@ class VCNL4000(object):
     __SIGNALFREQ        = 0x89
     __PROXINITYADJUST   = 0x8A
 
-    __3M125     = 0
-    __1M5625    = 1
-    __781K25    = 2
-    __390K625   = 3
+    __3M125             = 0
+    __1M5625            = 1
+    __781K25            = 2
+    __390K625           = 3
     __FREQUENCIES = (
         (__3M125, '3.125 MHz'),
         (__1M5625, '1.5625 MHz'),
